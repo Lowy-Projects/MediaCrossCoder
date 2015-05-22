@@ -1,0 +1,33 @@
+/*****************************************************************
+ * Media Cross-Coder By: Lowy
+ * 2015.03.25
+ * 
+ * Ez az osztály tartalmazza az egy mediához tartozó adatokat
+ * és beállításokat.
+ *****************************************************************/
+
+#ifndef MMCMEDIA_H
+#define MMCMEDIA_H
+
+#include "mcc.h"
+#include <LowyLib.h>
+#include <QObject>
+#include <QList>
+
+class mmcMedia: public QObject
+{
+    Q_OBJECT
+    
+public:
+    mmcMedia(ffDemuxer* demuxer, QObject* parent);
+    ~mmcMedia();
+
+    lError&                 Error() {return m_Error;}
+private:
+    ffDemuxer*              m_Demuxer;
+//    QList<mccStream*>       m_Streams;
+    
+    lError                  m_Error;
+};
+
+#endif // MMCMEDIA_H

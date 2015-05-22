@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>Images/media_add.png</file>
+        <file>Images/media_app.png</file>
+        <file>Images/media_del.png</file>
+        <file>Images/media_cross-coder.jpg</file>
+        <file>Images/select.png</file>
+        <file>Images/nonselect.png</file>
+        <file>Images/accept16.png</file>
+        <file>Images/cancel.png</file>
+        <file>Images/cross-script.png</file>
+    </qresource>
+</RCC>

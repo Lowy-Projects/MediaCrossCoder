@@ -1,0 +1,24 @@
+/*****************************************************************
+ * Media Cross-Coder By: Lowy
+ * 2015.03.25
+ * 
+ * Ez az osztály tartalmazza az egy médiához tartozó
+ * adatokat és beállításokat.
+ *****************************************************************/
+
+#include "mmcmedia.h"
+
+mmcMedia::mmcMedia(ffDemuxer *demuxer, QObject *parent) :
+    QObject(parent)
+{
+    m_Error.clear();
+    
+    
+    m_Demuxer = demuxer;
+}
+
+mmcMedia::~mmcMedia()
+{
+
+}
+
