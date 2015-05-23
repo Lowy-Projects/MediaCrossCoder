@@ -150,7 +150,7 @@ QDomElement MediaInfoBox::ShowStreamInfo(ffStream *stream)
 {
     QDomElement span  = m_Doc.createElement("span");
     QDomElement table = CreateCategory();
-    QString             s;
+    QString             s, t;
     ffDictionaryModel*   metadata = stream->Metadata();
     bool                    closeStream = ! stream->isOpen();
 
@@ -161,10 +161,13 @@ QDomElement MediaInfoBox::ShowStreamInfo(ffStream *stream)
 
     table.appendChild(CategoryEntry(tr("ID"), QString("%1").arg(stream->Id())));
     table.appendChild(CategoryEntry(tr("Tipus:"), stream->TypeString()));
-    table.appendChild(CategoryEntry(tr("Kódolás:"), stream->CodecName()));
+
+    t = stream->CodecName();
     s = ffUtil::getProfileName(stream->Codec(), stream->Profile());
     if (! s.isEmpty())
-        table.appendChild(CategoryEntry(tr("Profil:"), QString("%1 L%2").arg(s).arg(stream->Level())));
+        t.append(QString(" %1 L%2").arg(s).arg(stream->Level()));
+    table.appendChild(CategoryEntry(tr("Kódolás:"), t));
+
     s = metadata->Value("language", false);
     if (! s.isEmpty() )
         table.appendChild(CategoryEntry(tr("Nyelv:"), s));
@@ -174,6 +177,9 @@ QDomElement MediaInfoBox::ShowStreamInfo(ffStream *stream)
     {
     case ffStream::MediaType_Video:
         ShowVideoInfo(stream, table);
+        break;
+    case ffStream::MediaType_Audio:
+        ShowAudioStream(stream, table);
         break;
     case ffStream::MediaType_Unknown:
         break;
@@ -196,6 +202,15 @@ QDomElement MediaInfoBox::ShowVideoInfo(ffStream *stream, QDomElement& table)
     table.appendChild(CategoryEntry(tr("Képarány:"),  QString("%1:1").arg(stream->PictureRatio().value()) ));
     table.appendChild(CategoryEntry(tr("Képpont arány:"),  QString("%1:1").arg(stream->PixelRatio().value()) ));
     table.appendChild(CategoryEntry(tr("Képkockasebesség:"),  QString("%1 FPS (Kép/Másodperc)").arg(stream->FrameRate().value(), 10, ' ', 2)));
+
+    return table;
+}
+
+QDomElement MediaInfoBox::ShowAudioStream(ffStream *stream, QDomElement &table)
+{
+    table.appendChild(CategoryEntry(tr("Hangzás:"),  QString(tr("%1 csatorna")).arg(stream->Channels()) ));
+    table.appendChild(CategoryEntry(tr("Bitmélység:"),  stream->SampleFormat() )); // QString(tr("%1 bit/minta")).arg(stream->BitDepth()) ));
+    table.appendChild(CategoryEntry(tr("Minta sebesség:"),  QString("%1 minta/másodperc").arg(stream->SampleRate()) ));
 
     return table;
 }

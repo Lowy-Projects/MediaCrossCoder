@@ -21,7 +21,8 @@ QDomElement        NewDocument();                                               
 QDomElement        NoMediaMessage(QDomDocument &doc, int messageId = 0);           // Üzenet, ha nincs kiválasztva média fájl
 QDomElement        ShowMediaInfo(mccMedia *media);
 QDomElement        ShowStreamInfo(ffStream * stream);
-QDomElement ShowVideoInfo(ffStream* stream, QDomElement &table);
+QDomElement        ShowVideoInfo(ffStream* stream, QDomElement &table);
+QDomElement        ShowAudioStream(ffStream* stream, QDomElement &table);
 
 QDomElement        TitleLine(QString title);
 QDomElement        CreateCategory();
