@@ -209,7 +209,7 @@ QDomElement MediaInfoBox::ShowVideoInfo(ffStream *stream, QDomElement& table)
 QDomElement MediaInfoBox::ShowAudioStream(ffStream *stream, QDomElement &table)
 {
     table.appendChild(CategoryEntry(tr("Hangzás:"),  QString(tr("%1 csatorna")).arg(stream->Channels()) ));
-    table.appendChild(CategoryEntry(tr("Bitmélység:"),  stream->SampleFormat() )); // QString(tr("%1 bit/minta")).arg(stream->BitDepth()) ));
+    table.appendChild(CategoryEntry(tr("Formátum:"),  stream->SampleFormat() ));
     table.appendChild(CategoryEntry(tr("Minta sebesség:"),  QString("%1 minta/másodperc").arg(stream->SampleRate()) ));
 
     return table;

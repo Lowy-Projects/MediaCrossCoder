@@ -70,4 +70,4 @@ INCLUDEPATH += $$PWD/../QFFMpeg
 DEPENDPATH += $$PWD/../build/QFfmpeg/Debug
 
 unix|win32: LIBS += -L$$PWD/../build/QFfmpeg/Debug/
-unix|win32: LIBS += -lQFfmpeg
+unix|win32: LIBS += -lQFFMpeg
